@@ -1,25 +1,30 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { ChakraProvider, Flex, Box, extendTheme } from "@chakra-ui/react";
+import Sidebar from "./components/sidebar";
+import Courier from "./components/courier";
+// import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 function App() {
+  const theme = extendTheme({
+    styles: {
+      global: {
+        "*:focus": {
+          outline: "none",
+        },
+      },
+    },
+  });
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ChakraProvider theme={theme}>
+      <Flex>
+        <Box h="100vh">
+          <Sidebar />
+        </Box>
+        <Box flex="1" p={4}>
+          <Courier />
+        </Box>
+      </Flex>
+    </ChakraProvider>
   );
 }
 
